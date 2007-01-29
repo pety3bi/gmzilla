@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<window xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+        title="GmZilla"
+        width="800" height="600"
+        screenX="10" screenY="10"
+        persist="width,height,screenX,screenY"
+        onload="start()">
+		
+<script type="text/javascript" src="gmzilla_logic.js" />
+<script type="text/javascript" src="script-compiler.js" />
+
+<toolbox id="devtoolbox" hidden="true">
+    <menubar>
+     <menu label="Dev Tools">
+      <menupopup id="menu_ToolsPopup">
+      </menupopup>
+     </menu>
+	 <menu label="Chrome URLs">
+              <menupopup>
+                  <menuitem label="about:config"
+						tooltiptext="about:config"
+						oncommand="gmz_LoadURL('chrome://global/content/config.xul')" />
+					<menuseparator />
+				    <menuitem label="Extensions Manager"
+						tooltiptext="Extensions Manager"
+						oncommand="gmz_LoadURL('chrome://mozapps/content/extensions/extensions.xul?type=extensions')" />
+                  <menuitem label="Theme Manager"
+						tooltiptext="Theme Manager"
+						oncommand="gmz_LoadURL('chrome://mozapps/content/extensions/extensions.xul?type=extensions')" />
+			  </menupopup>
+            </menu>
+		    <button id="back" label="Back" oncommand="back();" disabled="true"/>
+			<button id="forward" label="Forward" oncommand="forward();" disabled="true"/>
+			<button id="reload" label="Reload" oncommand="reload();"/>
+			<button id="stop" label="Stop" oncommand="stop();" disabled="true"/>
+			<textbox id="urlbar" value="" flex="1" onchange="go();"/>
+			<button id="go" label="Go" oncommand="go();"/>	
+    </menubar>
+</toolbox>
+
+<hbox hidden="true">
+    <button id="back" label="Back" oncommand="back();" disabled="true"/>
+    <button id="forward" label="Forward" oncommand="forward();" disabled="true"/>
+    <button id="reload" label="Reload" oncommand="reload();"/>
+    <button id="stop" label="Stop" oncommand="stop();" disabled="true"/>
+    <textbox id="urlbar" value="" flex="1" onchange="go();"/>
+    <button id="go" label="Go" oncommand="go();"/>
+	<button id="Console" label="Console" oncommand="showConsole();"/>
+</hbox>
+
+<popupset>
+  <popup id="contextpopup">
+   <menuitem label="Back" oncommand="back();"/>
+   <menuitem label="Forward" oncommand="forward();"/>
+   <menuitem label="Reload" oncommand="reload();"/>
+   <menuitem label="Stop" oncommand="stop();"/>
+   <menuitem label="Devbar" oncommand="showDevbar();"/>
+  </popup>
+</popupset>
+
+	<browser id="mainBrowser" flex="1" type="content-primary" context="contextpopup" />
+	
+	<statusbar>
+		<statusbarpanel id="status" label="Debug Build" crop="end" flex="1"/>
+		<progressmeter id="progress" mode="determined" value="0%" style="display: none"/>
+		<statusbarpanel id="security" label="" style="display: none"/>
+	</statusbar>
+
+</window>
