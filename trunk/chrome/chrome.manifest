@@ -1,0 +1,4 @@
+content gmzilla content/
+locale gmzilla en-US jar:en-US.jar!/locale/en-US/gmzilla/
+locale branding en-US jar:en-US.jar!/locale/en-US/branding/
+overlay chrome://gmzilla/content/gmzilla.xul chrome://xulrunnerdev/content/devOverlay.xul
